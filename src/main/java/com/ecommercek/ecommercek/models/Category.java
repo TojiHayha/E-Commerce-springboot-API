@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -23,7 +24,9 @@ public class Category {
 	
 	private @NotNull String description;
 	
-	private @NotNull String ImageUrl;
+	@Lob
+	@Column(name = "image_url")
+	private @NotNull String imageUrl;
 	
 	public Category() {
 		
@@ -34,7 +37,7 @@ public class Category {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		ImageUrl = imageUrl;
+		this.imageUrl = imageUrl;
 	}
 
 	public Long getId() {
@@ -62,11 +65,11 @@ public class Category {
 	}
 
 	public String getImageUrl() {
-		return ImageUrl;
+		return imageUrl;
 	}
 
 	public void setImageUrl(String imageUrl) {
-		ImageUrl = imageUrl;
+		this.imageUrl = imageUrl;
 	}
 	
 	

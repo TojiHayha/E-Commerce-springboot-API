@@ -28,5 +28,19 @@ public class CategoryService {
 	public Category createCategory(Category category) {
 	  return categoryRepository.save(category);
 	}
+
+	public void editCategory(Long categoryId, Category editCategory) {
+		Optional<Category> optionalCategory = categoryRepository.findById(categoryId);
+		
+		if(optionalCategory.isPresent()) {
+			Category category = optionalCategory.get();
+			category.setName(editCategory.getName());
+			category.setDescription(editCategory.getDescription());
+			category.setImageUrl(editCategory.getImageUrl());
+			
+			categoryRepository.save(category);
+		}
+		
+	}
 	
 }
