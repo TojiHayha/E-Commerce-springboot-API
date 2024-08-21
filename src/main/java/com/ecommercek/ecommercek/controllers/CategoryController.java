@@ -54,6 +54,7 @@ public class CategoryController {
 		}
 		categoryService.editCategory(categoryId, category);
 		return new ResponseEntity<ApiResponse>(new ApiResponse(true, "a new category created"), HttpStatus.OK);
+		
 	}
 
 }

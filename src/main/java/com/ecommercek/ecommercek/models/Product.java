@@ -1,47 +1,33 @@
 package com.ecommercek.ecommercek.models;
 
-
-
 import java.util.Objects;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "tb_category")
-public class Category {
-
+@Table(name = "tb_product")
+public class Product {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long id; 
 	
-	@Column(name = "category_name")
 	private @NotNull String name;
-	
+	private @NotNull String imageUrl;
+	private @NotNull double price;
 	private @NotNull String description;
 	
-	@Lob
-	@Column(name = "image_url")
-	private @NotNull String imageUrl;
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
 	
-	public Category() {
-		
-	}
-
-	public Category(Long id, @NotNull String name, @NotNull String description, @NotNull String imageUrl) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.imageUrl = imageUrl;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -53,25 +39,41 @@ public class Category {
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	
+	public double getPrice() {
+		return price;
+	}
+	
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
 	public String getDescription() {
 		return description;
 	}
-
+	
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public Category getCategory() {
+		return category;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	@Override
@@ -87,9 +89,10 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
+		Product other = (Product) obj;
 		return Objects.equals(id, other.id);
 	}
+	
 	
 	
 	
