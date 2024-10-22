@@ -28,6 +28,21 @@ public class Product {
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
+	public Product() {
+		super();
+	}
+
+	public Product(Long id, @NotNull String name, @NotNull String imageUrl, @NotNull double price,
+			@NotNull String description, Category category) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.imageUrl = imageUrl;
+		this.price = price;
+		this.description = description;
+		this.category = category;
+	}
+
 	public Long getId() {
 		return id;
 	}
